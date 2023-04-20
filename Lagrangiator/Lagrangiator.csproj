@@ -21,6 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LagrangiatorLogic\LagrangiatorLogic.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\background.jpg" />
     <Resource Include="Images\Joseph_Louis_Lagrange.jpg" />
     <Resource Include="Images\lagrange_laser.jpeg" />

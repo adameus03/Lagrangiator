@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace LagrangiatorLogic
 {
-    internal class LagrangiatorAbstractLogicAPI
+    public abstract class LagrangiatorAbstractLogicAPI
     {
+        protected readonly LagrangiatorData.LagrangiatorAbstractDataAPI dataAPI;
+
+        public LagrangiatorAbstractLogicAPI(LagrangiatorData.LagrangiatorAbstractDataAPI dataAPI)
+        {
+            this.dataAPI = dataAPI;
+        }
+
+        public static LagrangiatorAbstractLogicAPI CreateInstance(LagrangiatorData.LagrangiatorAbstractDataAPI? dataAPI = null)
+        {
+            return new LagrangiatorLogicAPI(dataAPI ?? LagrangiatorData.LagrangiatorAbstractDataAPI.CreateInstance());
+        }
     }
 }

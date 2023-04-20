@@ -23,10 +23,13 @@ namespace Lagrangiator
 
         private bool fileInputVisible = false;
 
-        private PlotModel plotModel = new PlotModel();
+        private readonly PlotModel plotModel;
 
-        public LagrangiatorViewModel() : base() { 
+        private readonly LagrangiatorModel model;
 
+        public LagrangiatorViewModel() : base() {
+            this.model = new LagrangiatorModel();
+            this.plotModel = new PlotModel();
         }
 
         public int DataInputIndex { 
