@@ -11,7 +11,7 @@
     </Window.DataContext>
     <Grid ShowGridLines="True">
         <Grid.Background>
-            <ImageBrush ImageSource="background.jpg"/>
+            <ImageBrush ImageSource="Images/background.jpg"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -21,12 +21,12 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Image Height="200" Width="350" Source="lagrangiator.png" Margin="85,242,65,372" Grid.RowSpan="2">
+        <Image Height="200" Width="350" Source="Images/lagrangiator.png" Margin="85,242,65,372" Grid.RowSpan="2">
             <Image.RenderTransform>
                 <RotateTransform Angle="-45"/>
             </Image.RenderTransform>
         </Image>
-        <Image Grid.Column="1" Height="200" Width="350" Source="lagrange_laser.jpeg" Margin="44,184,106,23">
+        <Image Grid.Column="1" Height="200" Width="350" Source="Images/lagrange_laser.jpeg" Margin="44,184,106,23">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -46,7 +46,7 @@
         <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="center" Width="300" Height="100" FontSize="24" Command="{Binding LaunchLagrangiator}">
             Launch Lagrangiator
         </Button>
-        <Image Margin="13,199,286,25" RenderTransformOrigin="0.5,0.5" Source="/lagrange_laser.jpeg" Grid.Column="1">
+        <Image Margin="13,199,286,25" RenderTransformOrigin="0.5,0.5" Source="Images/lagrange_laser.jpeg" Grid.Column="1">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

@@ -21,6 +21,7 @@ namespace Lagrangiator
             //lagrangatorWindow.Show();
 
             MainViewModel.WindowService.ShowWindow<LagrangiatorViewModel>(new LagrangiatorViewModel());
+            //(new LagrangiatorWindow()).Show();
             MainViewModel.WindowService.CloseMainWindow();
         }
 

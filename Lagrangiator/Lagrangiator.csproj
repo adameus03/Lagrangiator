@@ -15,10 +15,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="background.jpg" />
-    <Resource Include="Joseph_Louis_Lagrange.jpg" />
-    <Resource Include="lagrange_laser.jpeg" />
-    <Resource Include="lagrangiator.png" />
+    <PackageReference Include="OxyPlot.Contrib.Wpf" Version="2.1.2" />
+    <PackageReference Include="OxyPlot.Wpf" Version="2.1.2" />
+    <PackageReference Include="WpfMath" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\background.jpg" />
+    <Resource Include="Images\Joseph_Louis_Lagrange.jpg" />
+    <Resource Include="Images\lagrange_laser.jpeg" />
+    <Resource Include="Images\lagrangiator.png" />
   </ItemGroup>
 
 </Project>

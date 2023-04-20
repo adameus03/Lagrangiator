@@ -3,10 +3,112 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
+        xmlns:oxyc="http://oxyplot.org/wpf/contrib"
         xmlns:local="clr-namespace:Lagrangiator"
         mc:Ignorable="d"
-        Title="LagrangiatorWindow" Height="450" Width="800">
+        Title="Lagrangiator" Height="742" Width="1511">
+    <Window.DataContext>
+        <local:LagrangiatorViewModel/>
+    </Window.DataContext>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="8*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Vertical">
+            <Label>Select data input method:</Label>
+            <ComboBox SelectedIndex="{Binding DataInputIndex, Mode=TwoWay}">
+                <ComboBoxItem>
+                    Auto-sample cataloged function
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    Load samples from file
+                </ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Vertical" Visibility="{Binding FileInputVisibility, Mode=OneWay}">
+            <Label>Choose interpolation data:</Label>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="&lt;No file chosen&gt;"/>
+                <Button Content="Select file"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Vertical" Visibility="{Binding FunctionInputVisibility, Mode=OneWay}">
+            <Label>Select function formula:</Label>
+            <ComboBox SelectedIndex="{Binding FormulaIndex, Mode=TwoWay}">
+                <ComboBoxItem>
+                    <controls:FormulaControl Formula="f(x)=3x-5"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <controls:FormulaControl Formula="f(x)=|x|"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <controls:FormulaControl Formula="f(x)=x^3+x^2-2x-1"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <controls:FormulaControl Formula="f(x)=\cos x"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <controls:FormulaControl Formula="f(x)=\cos^2(2x^2)-|\sin x^2|"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <controls:FormulaControl Formula="f(x)=\sin(|x+1|)+|x|^3-|x|"/>
+                </ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+
         
+
+        <StackPanel Grid.Row="2" Orientation="Vertical">
+            <Label>Number of interpolation nodes:</Label>
+            <StackPanel Orientation="Horizontal">
+                <controls:FormulaControl Formula="N=" VerticalAlignment="Center" Margin="5 0"/>
+                <TextBox VerticalAlignment="Center" Margin="5 0" FontSize="16" Text="{Binding InterpolationNodesNumber, Mode=TwoWay}" IsEnabled="{Binding FunctionInputVisible, Mode=OneWay}"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Vertical">
+            <Label>Specify the left bound:</Label>
+            <StackPanel Orientation="Horizontal">
+                <controls:FormulaControl Formula="a =" VerticalAlignment="Center" Margin="5 0"/>
+                <TextBox VerticalAlignment="Center" Margin="5 0" FontSize="16" Text="{Binding LeftBound, Mode=TwoWay}" IsEnabled="{Binding FunctionInputVisible, Mode=OneWay}"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Orientation="Vertical">
+            <Label>Specify the right bound:</Label>
+            <StackPanel Orientation="Horizontal">
+                <controls:FormulaControl Formula="b =" VerticalAlignment="Center" Margin="5 0"/>
+                <TextBox VerticalAlignment="Center" Margin="5 0" FontSize="16" Text="{Binding RightBound, Mode=TwoWay}" IsEnabled="{Binding FunctionInputVisible, Mode=OneWay}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Orientation="Vertical">
+            <CheckBox Content="Show nodes" IsChecked="{Binding ShowNodes, Mode=TwoWay}"/>
+            <CheckBox Content="Show interpolation" IsChecked="{Binding ShowInterpolation, Mode=TwoWay}"/>
+            <CheckBox Content="Show f(x)" IsChecked="{Binding ShowFx, Mode=TwoWay}" IsEnabled="{Binding FunctionInputVisible, Mode=OneWay}"/>
+        </StackPanel>
+
+
+        <Image Grid.Row="6" Source="Images/lagrangiator.png"/>
+        <Border Grid.Row="7" BorderBrush="AliceBlue" Margin="2 2 2 2" Visibility="Visible" BorderThickness="1">
+            <TextBox x:Name="console" TextWrapping="Wrap" Background="Black" Foreground="LawnGreen"  FontFamily="Consolas" Text="{Binding TerminalText, Mode=OneWay}"/>
+        </Border>
+
+        <oxyc:Plot Grid.Column="1" Grid.RowSpan="8" Model="{Binding Path=PlotModel, Mode=OneWay}">
+
+        </oxyc:Plot>
+
     </Grid>
 </Window>

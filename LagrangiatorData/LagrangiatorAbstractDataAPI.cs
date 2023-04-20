@@ -1,6 +1,6 @@
 ﻿namespace LagrangiatorData
 {
-    public class Class1
+    public class LagrangiatorAbstractDataAPI
     {
 
     }
