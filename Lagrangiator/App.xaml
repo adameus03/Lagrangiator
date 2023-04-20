@@ -1,0 +1,13 @@
+﻿<Application x:Class="Lagrangiator.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Lagrangiator"
+             xmlns:vm="clr-namespace:Lagrangiator"
+             xmlns:vw="clr-namespace:Lagrangiator"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <!--<DataTemplate DataType="{x:Type vm:MainViewModel}">
+            <vw:MainWindow/>
+        </DataTemplate>-->
+    </Application.Resources>
+</Application>

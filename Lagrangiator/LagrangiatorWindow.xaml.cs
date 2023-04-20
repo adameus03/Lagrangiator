@@ -10,26 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WpfMath.Controls;
 
-namespace ZeroGraphProject
+namespace Lagrangiator
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logika interakcji dla klasy LagrangiatorWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    [VVMAttribute(typeof(LagrangiatorViewModel))]
+    public partial class LagrangiatorWindow : Window
     {
-        public MainWindow()
+        public LagrangiatorWindow()
         {
             InitializeComponent();
-        }
-
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            (new Window1()).Show(); this.Close();
         }
     }
 }

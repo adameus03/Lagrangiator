@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="background.jpg" />
+    <None Remove="Joseph_Louis_Lagrange.jpg" />
+    <None Remove="lagrange_laser.jpeg" />
+    <None Remove="lagrangiator.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="background.jpg" />
+    <Resource Include="Joseph_Louis_Lagrange.jpg" />
+    <Resource Include="lagrange_laser.jpeg" />
+    <Resource Include="lagrangiator.png" />
+  </ItemGroup>
+
+</Project>
