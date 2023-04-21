@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
         xmlns:oxyc="http://oxyplot.org/wpf/contrib"
         xmlns:local="clr-namespace:Lagrangiator"
@@ -36,15 +37,28 @@
                 <ComboBoxItem>
                     Load samples from file
                 </ComboBoxItem>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding InputMethodChangeCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </ComboBox>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Orientation="Vertical" Visibility="{Binding FileInputVisibility, Mode=OneWay}">
             <Label>Choose interpolation data:</Label>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="&lt;No file chosen&gt;"/>
-                <Button Content="Select file"/>
-            </StackPanel>
+            <!--<StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding FilePath}"/>
+                <Button Content="Select file" Command="{Binding SelectFileCommand}"/>
+            </StackPanel>-->
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding FilePath}" VerticalAlignment="Center"/>
+                <Button Grid.Column="1" Content="Select file" Command="{Binding SelectFileCommand}" VerticalAlignment="Center"/>
+            </Grid>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Vertical" Visibility="{Binding FunctionInputVisibility, Mode=OneWay}">
             <Label>Select function formula:</Label>

@@ -12,20 +12,50 @@ namespace Lagrangiator
 
         private readonly LagrangiatorLogic.LagrangiatorAbstractLogicAPI logicAPI;
 
+
         public LagrangiatorModel(LagrangiatorLogic.LagrangiatorAbstractLogicAPI? logicAPI = null)
         {
             this.logicAPI = logicAPI ?? LagrangiatorLogic.LagrangiatorAbstractLogicAPI.CreateInstance();
         }
 
 
-
-        /*private Func<double, double>[] functions =
+        public Func<double, double> InterpolateUsingFile(string fileName)
         {
-            new Func<double, double>((double x) => x*(x*(x+1)-2)-1),
-            new Func<double, double>((double x) => Math.Cos(x)),
-            new Func<double, double>((double x) => Math.Pow(2, x)-3),
-            new Func<double, double>((double x) => Math.Cos(Math.Exp(x))),
-            new Func<double, double>((double x) => Math.Pow(Math.Cos(2*x*x),2)-Math.Pow(2,Math.Sin(x*x)))
-        };*/
+            LagrangeFileInputResult result = this.logicAPI.GetLagrangePolynomialForFileSamples(fileName);
+            if(result.Start == null || result.Interval==null || result.NodesCount == null)
+            {
+                throw new NullReferenceException();
+            }
+            this.LeftInterpolationBound = (double) result.Start;
+            this.RightInterpolationBound = (double)(result.Start + (result.NodesCount - 1) * result.Interval);
+            this.NumberOfNodes = (int)result.NodesCount;
+
+            return result.Interpolation;
+        }
+
+        public Func<double, double> InterpolateUsingFunctionIndex(int functionIndex)
+        {
+            return this.logicAPI.GetLagrangePolynomialForFunction(functionIndex, LeftInterpolationBound, Interval, NumberOfNodes);
+        }
+
+        public (double, double)[] GetNodes(Func<double, double> function)
+        {
+            (double, double)[] nodes = new (double, double)[NumberOfNodes];
+            for(int i=0; i<NumberOfNodes; i++)
+            {
+                double x = LeftInterpolationBound + i * Interval;
+                nodes[i] = (x, function(x));
+            }
+            return nodes;
+        }
+
+        private double Interval => (RightInterpolationBound - LeftInterpolationBound) / (NumberOfNodes - 1);
+
+        public double LeftInterpolationBound { get; set; }
+        public double RightInterpolationBound { get; set; }
+        public int NumberOfNodes { get; set; }
+
+        public Func<double, double> Function => this.logicAPI.GetFunction();
+
     }
 }

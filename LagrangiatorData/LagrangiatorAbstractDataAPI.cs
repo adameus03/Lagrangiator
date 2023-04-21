@@ -19,6 +19,8 @@
 
         public abstract ISamplingManager GetSamplingManager(); //overload it? - instead of declaring the above abstract methods
 
+        public abstract Func<double, double> GetFunction();
+
 
     }
 }

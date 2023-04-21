@@ -12,6 +12,11 @@ namespace Lagrangiator
         public void CloseWindow<TViewModel>(TViewModel viewModel);
 
         public void CloseMainWindow();
-        
+
+        public string? ShowFileDialog();
+
+        public void ShowMessage(string message);
+
+
     }
 }

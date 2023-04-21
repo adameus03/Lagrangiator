@@ -28,6 +28,11 @@ namespace LagrangiatorLogic
 
         public abstract LagrangeFileInputResult GetLagrangePolynomialForFileSamples(string filePath);
 
+        public Func<double, double> GetFunction()
+        {
+            return this.dataAPI.GetFunction();
+        }
+
 
         /*public void SetFunctionIndex(int functionIndex)
         {

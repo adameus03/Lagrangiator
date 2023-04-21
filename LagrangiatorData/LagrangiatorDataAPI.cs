@@ -8,15 +8,30 @@ namespace LagrangiatorData
 {
     internal class LagrangiatorDataAPI : LagrangiatorAbstractDataAPI
     {
+
+        /*
+         * 
+         * f0(x)=3x-5
+         * f1(x)=|x|
+         * f2(x)=x^3+x^2-2x-1
+         * f3(x)=\cos x
+         * f4(x)=\cos^2(2x^2)-|\sin x^2|
+         * f5(x)=\sin(|x+1|)+|x|^3-|x|
+         * 
+         */
+
         private Func<double, double>[] functions =
         {
+            new Func<double, double>((double x) => 3*x-5),
+            new Func<double, double>((double x) => Math.Abs(x)),
             new Func<double, double>((double x) => x*(x*(x+1)-2)-1),
             new Func<double, double>((double x) => Math.Cos(x)),
-            new Func<double, double>((double x) => Math.Pow(2, x)-3),
-            new Func<double, double>((double x) => Math.Cos(Math.Exp(x))),
-            new Func<double, double>((double x) => Math.Pow(Math.Cos(2*x*x),2)-Math.Pow(2,Math.Sin(x*x)))
+            new Func<double, double>((double x) => Math.Cos(2*x*x)*Math.Cos(2*x*x)-Math.Abs(Math.Sin(x*x))),
+            new Func<double, double>((double x) => Math.Sin(Math.Abs(x+1))+Math.Abs(x)*(Math.Abs(x)*Math.Abs(x)-1))
         };
 
+
+        
 
         public LagrangiatorDataAPI() : base() { }
 
@@ -41,6 +56,15 @@ namespace LagrangiatorData
             }
             return new BasicSamplingManager(start, samples.Length, interval, samples);
 
+        }
+
+        public override Func<double, double> GetFunction()
+        {
+            if(this.functionIndex == null)
+            {
+                throw new NullReferenceException();
+            }
+            return this.functions[(int)this.functionIndex];
         }
 
         public override void SetDataInputMethod(DataInputMethod dataInputMethod)
