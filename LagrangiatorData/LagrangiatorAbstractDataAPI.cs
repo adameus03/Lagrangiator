@@ -17,7 +17,7 @@
 
         public abstract void SetFunctionIndex(int index);
 
-        public abstract ISamplingManager GetSamplingManager();
+        public abstract ISamplingManager GetSamplingManager(); //overload it? - instead of declaring the above abstract methods
 
 
     }
